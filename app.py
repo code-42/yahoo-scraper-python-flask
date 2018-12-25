@@ -3,13 +3,13 @@
 # flask run
 
 
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 # two routes being handled by the same function
 @app.route("/")
 def home():
-    return "<h1>Home Page 3000</h1>"
+    return  render_template('home.html')
 
 # this only needed to run directly using python prompt >>>
 # set FLASK_APP=app
