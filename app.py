@@ -2,16 +2,30 @@
 # set environment variables: export FLASK_DEBUG=1
 # flask run
 
-
 from flask import Flask, render_template
 app = Flask(__name__)
 
+# dummy data for scraper
+data = [
+    {
+        'market_time': '2018-12-26 10:40 AM',
+        'current_market_value': '$22169.90',
+        'todays_gain': '$292.90',
+        'total_gain': '$7996.20'
+    },
+    {
+        'market_time': '2018-12-26 10:50 AM',
+        'current_market_value': '$22240.40',
+        'todays_gain': '$372.90',
+        'total_gain': '$8066.70'
+    }
+]
 
 # two routes being handled by the same function
 @app.route("/")
 @app.route("/home")
 def home():
-    return  render_template('home.html', title='Home')
+    return  render_template('home.html', title='Home', data=data)
 
 
 @app.route("/about")

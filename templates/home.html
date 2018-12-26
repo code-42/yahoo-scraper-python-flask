@@ -8,5 +8,12 @@
 </head>
 <body>
     <h1>Home Page 3000</h1>
+    {% for item in data %}
+        <p>Market Time: {{ item.market_time }}</p>
+        <p>Current Market Value: {{ item.current_market_value }}</p>
+        <p>Today's Gain: {{ item.todays_gain }}</p>
+        <p>Total Gain: {{ item.total_gain }}</p>
+        <br>
+    {% endfor %}
 </body>
 </html>
