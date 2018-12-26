@@ -2,7 +2,7 @@
 # set environment variables: export FLASK_DEBUG=1
 # flask run
 
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 app = Flask(__name__)
 
 # dummy data for scraper
