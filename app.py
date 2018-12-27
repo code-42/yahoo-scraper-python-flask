@@ -2,7 +2,7 @@
 # set environment variables: export FLASK_DEBUG=1
 # flask run
 
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '\xf1\\3\x91p\x97i>\x9a\xeal\x1e\xe2\xcc\xd3y"\x96\xfca\xb7\xf6`\xa7'
@@ -37,6 +37,9 @@ def about():
 @app.route("/register", methods=['GET','POST'])
 def register():
     form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
 
 @app.route("/login")
