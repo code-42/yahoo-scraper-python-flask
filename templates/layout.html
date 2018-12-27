@@ -41,16 +41,16 @@
                         </ul>
                         <ul class="navbar-nav ml-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="#">Welcome <b>{{ username }}.</b> Your user_id is <b>{{ user_id }}</b></a></li>
-                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Log Out</a></li>
                         </ul>
                     {% else %}
                         <ul class="navbar-nav mr-auto mt-2">    
-                            <li class="nav-item"><a class="nav-link" href="/home" id="quote">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
                         </ul> 
                         <ul class="navbar-nav ml-auto mt-2">
-                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Log In</a></li>
                         </ul>
                     {% endif %}
                 </div>
