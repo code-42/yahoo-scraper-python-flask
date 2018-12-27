@@ -24,22 +24,22 @@
             <div class="collapse navbar-collapse" id="navbar">
                 {% if session.user_id %}
                     <ul class="navbar-nav mr-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/quote" id="quote">Quote</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/buy">Buy</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/sell">Sell</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" id="quote">Quote</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">History</a></li>
                         <li class="nav-item">
                         <div class="dropdown navbar-light bg-light">
                             <button class="navbar navbar-expand-md navbar-light bg-light collapse navbar-collapse nav-link dropbtn">Cash</button>
                             <div class="dropdown-content navbar-light bg-light">
-                            <a class="nav-link navbar-light bg-light" href="/deposit">Deposit</a>
-                            <a class="nav-link navbar-light bg-light" href="/withdraw">Withdraw</a>
+                            <a class="nav-link navbar-light bg-light" href="#">Deposit</a>
+                            <a class="nav-link navbar-light bg-light" href="#">Withdraw</a>
                             </div>
                         </div>
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/logout">Welcome <b>{{ username }}.</b> Your user_id is <b>{{ user_id }}</b></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Welcome <b>{{ username }}.</b> Your user_id is <b>{{ user_id }}</b></a></li>
                         <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
                     </ul>
                 {% else %}

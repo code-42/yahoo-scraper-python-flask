@@ -33,6 +33,7 @@ def home():
 def about():
     return render_template('about.html', title='About')    
 
+
 # this only needed to run directly using python prompt >>>
 # set FLASK_APP=app
 # set FLASK_DEBUG=true
