@@ -17,41 +17,43 @@
 <body>
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-            <a class="navbar-brand" href="/"><span class="blue">C</span><span class="red">$</span><span class="yellow">5</span><span class="green">0</span> <span class="red">Scraper</span></a>
-            <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbar">
-                {% if session.user_id %}
-                    <ul class="navbar-nav mr-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="#" id="quote">Quote</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">History</a></li>
-                        <li class="nav-item">
-                        <div class="dropdown navbar-light bg-light">
-                            <button class="navbar navbar-expand-md navbar-light bg-light collapse navbar-collapse nav-link dropbtn">Cash</button>
-                            <div class="dropdown-content navbar-light bg-light">
-                            <a class="nav-link navbar-light bg-light" href="#">Deposit</a>
-                            <a class="nav-link navbar-light bg-light" href="#">Withdraw</a>
+            <div class="container">
+                <a class="navbar-brand" href="/"><span class="blue">C</span><span class="red">$</span><span class="yellow">5</span><span class="green">0</span> <span class="red">Scraper</span></a>
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if session.user_id %}
+                        <ul class="navbar-nav mr-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="#" id="quote">Quote</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Buy</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Sell</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">History</a></li>
+                            <li class="nav-item">
+                            <div class="dropdown navbar-light bg-light">
+                                <button class="navbar navbar-expand-md navbar-light bg-light collapse navbar-collapse nav-link dropbtn">Cash</button>
+                                <div class="dropdown-content navbar-light bg-light">
+                                <a class="nav-link navbar-light bg-light" href="#">Deposit</a>
+                                <a class="nav-link navbar-light bg-light" href="#">Withdraw</a>
+                                </div>
                             </div>
-                        </div>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="#">Welcome <b>{{ username }}.</b> Your user_id is <b>{{ user_id }}</b></a></li>
-                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
-                    </ul>
-                {% else %}
-                    <ul class="navbar-nav mr-auto mt-2">    
-                        <li class="nav-item"><a class="nav-link" href="/home" id="quote">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-                    </ul> 
-                    <ul class="navbar-nav ml-auto mt-2">
-                        <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
-                    </ul>
-                {% endif %}
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav ml-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="#">Welcome <b>{{ username }}.</b> Your user_id is <b>{{ user_id }}</b></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav mr-auto mt-2">    
+                            <li class="nav-item"><a class="nav-link" href="/home" id="quote">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                        </ul> 
+                        <ul class="navbar-nav ml-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
             </div>
         </nav>
     </header>
