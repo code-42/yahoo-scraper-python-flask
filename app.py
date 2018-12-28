@@ -5,10 +5,12 @@
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '\xf1\\3\x91p\x97i>\x9a\xeal\x1e\xe2\xcc\xd3y"\x96\xfca\xb7\xf6`\xa7'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # sqlite database for scraped data
@@ -22,11 +24,11 @@ class Totals(db.Model):
     # see video 4 @ 16:50 for explanation of db.relationship and backref
 
     def __repr__(self):
-        return f"Totals(
-            '{self.todaysDate}', 
-            '{self.currentMarketValue}', 
-            '{self.dayGain}', 
-            '{self.totalGain}'
+        return f"Totals( \
+            '{self.todaysDate}', \
+            '{self.currentMarketValue}', \
+            '{self.dayGain}', \
+            '{self.totalGain}' \
             )"
 
 class Watchlist(db.Model):
@@ -49,21 +51,21 @@ class Watchlist(db.Model):
     # see video 4 @ 16:50 for explanation of totals_id and ForeignKey  
 
     def __repr__(self):
-        return f"Watchlist(
-            '{self.todaysDate}', 
-            '{self.symbol}', 
-            '{self.lastPrice}', 
-            '{self.todaysChange}',
-            '{self.percentChange}', 
-            '{self.currency}', 
-            '{self.marketTime}',
-            '{self.volume}', 
-            '{self.shares}', 
-            '{self.avgVol}',
-            '{self.dayRange}',
-            '{self.fiftyTwoWkRange}', 
-            '{self.dayChart}', 
-            '{self.marketCap}'
+        return f"Watchlist( \
+            '{self.todaysDate}', \
+            '{self.symbol}', \
+            '{self.lastPrice}', \
+            '{self.todaysChange}', \
+            '{self.percentChange}', \
+            '{self.currency}', \
+            '{self.marketTime}', \
+            '{self.volume}', \
+            '{self.shares}', \
+            '{self.avgVol}', \
+            '{self.dayRange}', \
+            '{self.fiftyTwoWkRange}', \
+            '{self.dayChart}', \
+            '{self.marketCap}' \
             )"
 
 
