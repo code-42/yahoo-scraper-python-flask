@@ -2,6 +2,8 @@
 # set environment variables: export FLASK_DEBUG=1
 # flask run
 
+# video 4 https://www.youtube.com/watch?v=cYWiDiIUxQc
+
 from flask import Flask, render_template, url_for, flash, redirect
 from forms import RegistrationForm, LoginForm
 from flask_sqlalchemy import SQLAlchemy
