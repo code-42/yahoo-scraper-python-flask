@@ -14,31 +14,39 @@ db = SQLAlchemy(app)
 # sqlite database for scraped data
 class Totals(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    todaysDate = db.Column(db.String(20), unique=True, nullable=False)
-    currentMarketValue = db.Column(db.String(20), unique=True, nullable=False)
-    dayGain = db.Column(db.String(20), unique=True, nullable=False)
-    totalGain = db.Column(db.String(20), unique=True, nullable=False)
+    todaysDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    currentMarketValue = db.Column(db.String(20))
+    dayGain = db.Column(db.String(20))
+    totalGain = db.Column(db.String(20))
+    watchlist = db.relationship('Watchlist', backref='login-username', lazy=True)
+    # see video 4 @ 16:50 for explanation of db.relationship and backref
 
     def __repr__(self):
-        return f"Totals('{self.todaysDate}', '{self.currentMarketValue}', '{self.dayGain}', '{self.totalGain}')"
+        return f"Totals(
+            '{self.todaysDate}', 
+            '{self.currentMarketValue}', 
+            '{self.dayGain}', 
+            '{self.totalGain}'
+            )"
 
 class Watchlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    todaysDate = db.Column(db.String(20), unique=True, nullable=False)
-    symbol = db.Column(db.String(20), unique=True, nullable=False)
-    lastPrice = db.Column(db.String(20), unique=True, nullable=False)
-    todaysChange = db.Column(db.String(20), unique=True, nullable=False)
-    percentChange = db.Column(db.String(20), unique=True, nullable=False)
-    currency = db.Column(db.String(20), unique=True, nullable=False)
-    marketTime = db.Column(db.String(20), unique=True, nullable=False)
-    volume = db.Column(db.String(20), unique=True, nullable=False)
-    shares = db.Column(db.String(20), unique=True, nullable=False)
-    avgVol = db.Column(db.String(20), unique=True, nullable=False)
-    dayRange = db.Column(db.String(20), unique=True, nullable=False)
-    fiftyTwoWkRange = db.Column(db.String(20), unique=True, nullable=False)
-    dayChart = db.Column(db.String(20), unique=True, nullable=False)
-    marketCap = db.Column(db.String(20), unique=True, nullable=False)
-    
+    todaysDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    symbol = db.Column(db.String(20), nullable=False)
+    lastPrice = db.Column(db.String(20))
+    todaysChange = db.Column(db.String(20))
+    percentChange = db.Column(db.String(20))
+    currency = db.Column(db.String(20))
+    marketTime = db.Column(db.String(20))
+    volume = db.Column(db.String(20))
+    shares = db.Column(db.String(20))
+    avgVol = db.Column(db.String(20))
+    dayRange = db.Column(db.String(20))
+    fiftyTwoWkRange = db.Column(db.String(20))
+    dayChart = db.Column(db.String(20))
+    marketCap = db.Column(db.String(20))
+    totals_id = db.Column(db.Integer, db.ForeignKey('totals.id'), nullable=False)
+    # see video 4 @ 16:50 for explanation of totals_id and ForeignKey  
 
     def __repr__(self):
         return f"Watchlist(
