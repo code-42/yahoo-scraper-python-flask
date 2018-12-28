@@ -11,6 +11,19 @@ app.config['SECRET_KEY'] = '\xf1\\3\x91p\x97i>\x9a\xeal\x1e\xe2\xcc\xd3y"\x96\xf
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 
+# sqlite database for scraped data
+class Totals(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    todaysDate = db.Column(db.String(20), unique=True, nullable=False)
+    currentMarketValue = db.Column(db.String(20), unique=True, nullable=False)
+    dayGain = db.Column(db.String(20), unique=True, nullable=False)
+    totalGain = db.Column(db.String(20), unique=True, nullable=False)
+
+    def __repr__(self):
+        return f"Totals('{self.todaysDate}', '{self.currentMarketValue}', '{self.dayGain}', '{self.totalGain}')"
+
+
+
 # dummy data for scraper
 data = [
     {
