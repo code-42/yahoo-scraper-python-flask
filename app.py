@@ -22,6 +22,41 @@ class Totals(db.Model):
     def __repr__(self):
         return f"Totals('{self.todaysDate}', '{self.currentMarketValue}', '{self.dayGain}', '{self.totalGain}')"
 
+class Watchlist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    todaysDate = db.Column(db.String(20), unique=True, nullable=False)
+    symbol = db.Column(db.String(20), unique=True, nullable=False)
+    lastPrice = db.Column(db.String(20), unique=True, nullable=False)
+    todaysChange = db.Column(db.String(20), unique=True, nullable=False)
+    percentChange = db.Column(db.String(20), unique=True, nullable=False)
+    currency = db.Column(db.String(20), unique=True, nullable=False)
+    marketTime = db.Column(db.String(20), unique=True, nullable=False)
+    volume = db.Column(db.String(20), unique=True, nullable=False)
+    shares = db.Column(db.String(20), unique=True, nullable=False)
+    avgVol = db.Column(db.String(20), unique=True, nullable=False)
+    dayRange = db.Column(db.String(20), unique=True, nullable=False)
+    fiftyTwoWkRange = db.Column(db.String(20), unique=True, nullable=False)
+    dayChart = db.Column(db.String(20), unique=True, nullable=False)
+    marketCap = db.Column(db.String(20), unique=True, nullable=False)
+    
+
+    def __repr__(self):
+        return f"Watchlist(
+            '{self.todaysDate}', 
+            '{self.symbol}', 
+            '{self.lastPrice}', 
+            '{self.todaysChange}',
+            '{self.percentChange}', 
+            '{self.currency}', 
+            '{self.marketTime}',
+            '{self.volume}', 
+            '{self.shares}', 
+            '{self.avgVol}',
+            '{self.dayRange}',
+            '{self.fiftyTwoWkRange}', 
+            '{self.dayChart}', 
+            '{self.marketCap}'
+            )"
 
 
 # dummy data for scraper
