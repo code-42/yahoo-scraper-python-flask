@@ -10,6 +10,7 @@ class Totals(db.Model):
     totalGain = db.Column(db.String(20))
     watchlist = db.relationship('Watchlist', backref='login-username', lazy=True)
     # see video 4 @ 16:50 for explanation of db.relationship and backref
+    # video 4 https://www.youtube.com/watch?v=cYWiDiIUxQc
 
     def __repr__(self):
         return f"Totals( \

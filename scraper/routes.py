@@ -1,19 +1,6 @@
-# set environment variables: export FLASK_APP=app.py
-# set environment variables: export FLASK_DEBUG=1
-# flask run
-
-# video 4 https://www.youtube.com/watch?v=cYWiDiIUxQc
-
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '\xf1\\3\x91p\x97i>\x9a\xeal\x1e\xe2\xcc\xd3y"\x96\xfca\xb7\xf6`\xa7'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+from flask import render_template, url_for, flash, redirect
+from scraper.forms import RegistrationForm, LoginForm
+from scraper.models import Totals, Watchlist
 
 # dummy data for scraper
 data = [
@@ -54,13 +41,3 @@ def register():
 def login():
     form = LoginForm()
     return render_template('login.html', title='Login', form=form)
-
-
-# this only needed to run directly using python prompt >>>
-# set FLASK_APP=app
-# set FLASK_DEBUG=true
-# python -m flask run --port 3000
-if __name__ == "__main__":
-    app.run(debug=True)
-    # app.run(debug=True, host='0.0.0.0', port=3000)
-
