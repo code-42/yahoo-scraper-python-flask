@@ -1,5 +1,5 @@
 from datetime import datetime
-from flaskblog import db
+from scraper import db
 
 # sqlite database for scraped data
 class Totals(db.Model):

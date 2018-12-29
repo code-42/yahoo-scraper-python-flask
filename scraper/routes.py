@@ -1,4 +1,5 @@
 from flask import render_template, url_for, flash, redirect
+from scraper import app
 from scraper.forms import RegistrationForm, LoginForm
 from scraper.models import Totals, Watchlist
 
