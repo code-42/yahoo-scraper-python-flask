@@ -34,8 +34,14 @@ def about():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        # source https://docs.python.org/2/library/hashlib.html
+        hashed_password = generate_password_hash(form.password.data)
+        print(hashed_password)
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
         flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
 @app.route("/login", methods=['GET','POST'])
