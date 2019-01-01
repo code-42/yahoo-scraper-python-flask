@@ -1,7 +1,9 @@
 from flask import render_template, url_for, flash, redirect
-from scraper import app
+from scraper import app, db
 from scraper.forms import RegistrationForm, LoginForm
-from scraper.models import Totals, Watchlist
+from scraper.models import Totals, Watchlist, User
+from werkzeug.security import check_password_hash, generate_password_hash
+
 
 # dummy data for scraper
 data = [
@@ -40,7 +42,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash(f'Account created for {form.username.data}!', 'success')
+        flash(f'Account created for {form.username.data}! You can now login.', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
 
