@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, request
 from scraper import app, db
 from scraper.forms import RegistrationForm, LoginForm
 from scraper.models import Totals, Watchlist, User
@@ -26,7 +26,8 @@ data = [
 @app.route("/")
 @app.route("/home")
 def home():
-    return  render_template('home.html', title='Home', data=data)
+    users = User.query.all()
+    return  render_template('home.html', title='Home', data=data, users=users)
 
 
 @app.route("/about")
@@ -60,7 +61,12 @@ def login():
         user = User.query.filter_by(email=form.email.data).first()
         if user and check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
-            return redirect(url_for('home'))
+            # get() method returns none if next parameter doesnot exist
+            # square brackets [key_name] would throw an error
+            # next parameter is optional
+            next_page = request.args.get('next')
+            # ternary conditional of the form ? yes:no
+            return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check email and password.', 'danger')
     return render_template('login.html', title='Login', form=form)
