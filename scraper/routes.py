@@ -3,6 +3,7 @@ from scraper import app, db
 from scraper.forms import RegistrationForm, LoginForm
 from scraper.models import Totals, Watchlist, User
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_login import login_user
 
 
 # dummy data for scraper
@@ -50,9 +51,10 @@ def register():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == 'dd@dd.com' and form.password.data == 'dd':
-            flash('You have been logged in!', 'success')
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
             return redirect(url_for('home'))
         else:
-            flash('Login Unsuccessful. Please check username and password', 'danger')
+            flash('Login Unsuccessful. Please check email and password.', 'danger')
     return render_template('login.html', title='Login', form=form)
