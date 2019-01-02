@@ -3,7 +3,7 @@ from scraper import app, db
 from scraper.forms import RegistrationForm, LoginForm
 from scraper.models import Totals, Watchlist, User
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 # dummy data for scraper
@@ -33,6 +33,7 @@ def home():
 def about():
     return render_template('about.html', title='About')    
 
+
 @app.route("/register", methods=['GET','POST'])
 def register():
     if current_user.is_authenticated:
@@ -48,6 +49,7 @@ def register():
         flash(f'Account created for {form.username.data}! You can now login.', 'success')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
 
 @app.route("/login", methods=['GET','POST'])
 def login():
@@ -68,3 +70,9 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+
+@app.route("/account")
+@login_required
+def account():
+    return render_template('account.html', title='Account')
