@@ -1,5 +1,10 @@
 from datetime import datetime
-from scraper import db
+from scraper import db, login_manager
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 # sqlite database for users
