@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
-from scraper.models import User
+# from scraper.models import User
 
 
 class RegistrationForm(FlaskForm):
@@ -29,5 +29,5 @@ class LoginForm(FlaskForm):
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()]) 
-    submit = SubmitField('Sign Up')
+    submit = SubmitField('Login')
     remember = BooleanField('Rember Me')

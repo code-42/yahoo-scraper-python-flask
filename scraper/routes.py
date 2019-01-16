@@ -1,33 +1,20 @@
 from flask import render_template, url_for, flash, redirect, request
-from scraper import app, db
+from scraper import app, db, mdb, collection
 from scraper.forms import RegistrationForm, LoginForm
-from scraper.models import Totals, Watchlist, User
+from scraper.models import User
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import login_user, current_user, logout_user, login_required
-
-
-# dummy data for scraper
-data = [
-    {
-        'market_time': '2018-12-26 10:40 AM',
-        'current_market_value': '$22169.90',
-        'todays_gain': '$292.90',
-        'total_gain': '$7996.20'
-    },
-    {
-        'market_time': '2018-12-26 10:50 AM',
-        'current_market_value': '$22240.40',
-        'todays_gain': '$372.90',
-        'total_gain': '$8066.70'
-    }
-]
 
 # two routes being handled by the same function
 @app.route("/")
 @app.route("/home")
 def home():
-    users = User.query.all()
-    return  render_template('home.html', title='Home', data=data, users=users)
+    try:
+        data = collection.find()
+        return  render_template('home.html', title='Home', data=data)
+    except Exception as e:
+        # TODO: make a good informative error page
+        return render_template('about.html', title='About')
 
 
 @app.route("/about")
@@ -37,6 +24,7 @@ def about():
 
 @app.route("/register", methods=['GET','POST'])
 def register():
+    users = User.query.all()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
@@ -49,11 +37,12 @@ def register():
         db.session.commit()
         flash(f'Account created for {form.username.data}! You can now login.', 'success')
         return redirect(url_for('login'))
-    return render_template('register.html', title='Register', form=form)
+    return render_template('register.html', title='Register', form=form, users=users)
 
 
 @app.route("/login", methods=['GET','POST'])
 def login():
+    users = User.query.all()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
@@ -69,7 +58,7 @@ def login():
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
             flash('Login Unsuccessful. Please check email and password.', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    return render_template('login.html', title='Login', form=form, users=users)
 
 
 @app.route("/logout")
