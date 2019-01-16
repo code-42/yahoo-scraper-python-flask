@@ -1,10 +1,14 @@
 {% extends "layout.html" %}
 {% block main %}
     {% for item in data %}
-        <p>Market Time: {{ item.market_time }}</p>
+        <!-- <p>Market Time: {{ item.market_time }}</p>
         <p>Current Market Value: {{ item.current_market_value }}</p>
         <p>Today's Gain: {{ item.todays_gain }}</p>
-        <p>Total Gain: {{ item.total_gain }}</p>
+        <p>Total Gain: {{ item.total_gain }}</p> -->
+        <p>Market Time: {{ item.todaysDate }}</p>
+        <p>Current Market Value: {{ item.currentMarketValue }}</p>
+        <p>Today's Gain: {{ item.dayGain }}</p>
+        <p>Total Gain: {{ item.totalGain }}</p>
         <br>
     {% endfor %}
 {% endblock main %}

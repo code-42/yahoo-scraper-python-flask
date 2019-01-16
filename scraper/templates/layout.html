@@ -73,13 +73,15 @@
                 </p>
 
                 <p class='text-muted'>
+                    {% if users %}
                     <strong>For development and debugging purposes,</strong>
-                    put list of registered usernames and emails. Remove for production!
+                    put list of registered usernames and emails. <strong>Remove for production!</strong>
                     <ul class="list-group">
                         {% for user in users %}
                         <li class="list-group-item list-group-item-light">{{ user.username }} == {{ user.email }}</li>
                         {% endfor %}
                     </ul>
+                    {% endif %}
                 </p>
 
                 </div>
